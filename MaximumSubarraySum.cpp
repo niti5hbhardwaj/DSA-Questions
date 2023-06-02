@@ -17,7 +17,7 @@ int maximumSubarraySum(int array[], int size){
 }
 
 //kadane's algorithm
-int maximumSubarraySumUsingKadanes(int array[], int size){
+int Kadanes(int array[], int size){
     int maxSum = INT_MIN;
     int currentSum = 0;
     for(int i=0;i<size;i++){
@@ -32,6 +32,20 @@ int maximumSubarraySumUsingKadanes(int array[], int size){
     return maxSum;
 }
 
+//maximum circular subarray sum (It means that the subarray can wrap around the array)
+int maximumCircularSubarraySum(int array[], int size){
+    int maxSum;
+    int negationArray[size];
+    for(int i=0;i<size;i++){
+        negationArray[i] = -array[i];
+    }
+    int wrapSum = Kadanes(negationArray, size);
+    int nonWrapSum = Kadanes(array, size);
+    maxSum = wrapSum>nonWrapSum? wrapSum: nonWrapSum;
+    return maxSum;
+}
+
+
 int main(){
     int size;
     cin>>size;
@@ -39,5 +53,5 @@ int main(){
     for(int i=0;i<size;i++){
         cin>>array[i];
     }
-    cout<<maximumSubarraySumUsingKadanes(array,size)<<endl;
+    cout<<maximumCircularSubarraySum(array,size)<<endl;
 }
