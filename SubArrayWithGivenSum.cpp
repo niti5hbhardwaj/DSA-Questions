@@ -6,7 +6,7 @@ void subarrayWithSum(vector<int> array,int size, int sum){
     bool found = false;
     while(j<size){
         if(currentSum==sum){
-            found = true;
+            found = true; 
             break;
         }
         else if(currentSum<sum){
