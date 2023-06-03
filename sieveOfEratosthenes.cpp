@@ -19,12 +19,35 @@ void sieveOfEratosthenes(int n){
         if(prime[i])
             cout<<i<<" ";
     }
+}
 
+void primeFactors(int num){
+    int primeFactor[num+1];
+    for(int i=0;i<=num;i++){
+        if(i<2){
+            primeFactor[i] = 0;
+        }
+        primeFactor[i] = i;
+    }
+
+    for(int i=2;i<=num;i++){
+        if(primeFactor[i]==i){
+            for(int j=i*i;j<=num;j+=i){
+                if(primeFactor[j]==j)
+                    primeFactor[j] = i;
+            }
+        }
+    }
+
+    while(num!=1){
+        cout<<primeFactor[num]<<" ";
+        num/= primeFactor[num];
+    }
 }
 
 int main(){
     int n;
     cin>>n;
-    sieveOfEratosthenes(n);
+    primeFactors(n);
     return 0;
 }
