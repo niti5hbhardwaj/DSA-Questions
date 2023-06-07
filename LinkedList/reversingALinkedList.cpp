@@ -124,6 +124,23 @@ public:
         return newHead;
     }
 
+    Node* reverseKNode(Node* head, int k){
+        Node* prevNode = NULL;
+        Node* currentNode = head;
+        Node* nextNode;
+        int i=0;
+        while(i<k && currentNode!=NULL){
+            nextNode = currentNode->next;
+            currentNode->next = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
+            i++;
+        }
+        if(nextNode!=NULL)
+            head->next = reverseKNode(nextNode, k);
+        return prevNode;
+    }
+
 int main(){
     LinkedList ll;
     ll.insertAtTail(2);
@@ -132,7 +149,7 @@ int main(){
     ll.insertAtHead(1);
     // ll.display();
     Node* head = ll.getHead();
-    ll.setHead(reverseRecursive(head));
+    ll.setHead(reverseKNode(head,3));
     ll.display();
     return 0;
 }
