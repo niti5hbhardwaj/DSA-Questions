@@ -35,18 +35,9 @@ void inOrder(Node* root){
     inOrder(root->right); 
 }
 
-void preOrder(Node* root){
-    if(root==NULL){
-        return;
-    }
-    cout<<root->data<<" ";
-    preOrder(root->left);
-    preOrder(root->right); 
-}
-
 int main(){
     vector<int> arr{1,2,3,4,5,6};
     Node* root = NULL;
     root = constructBSTFromSortedArray(arr, 0, arr.size()-1) ;
-    preOrder(root);
+    inOrder(root);
 }
